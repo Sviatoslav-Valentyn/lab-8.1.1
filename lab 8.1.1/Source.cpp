@@ -3,7 +3,7 @@
 using namespace std;
 bool Search(const char* str)
 {
-    for (size_t i = 0; str[i] != '\0'; i++)
+    for (size_t i = 0; str[i] != '\0' && str[i + 1] != '\0'; i++)
     {
         if (('Q' == str[i] && 'S' == str[i + 1]) ||
             ('S' == str[i] && 'Q' == str[i + 1]))
@@ -15,7 +15,11 @@ bool Search(const char* str)
 char* Replace(char* R, const char* str, char* s)
 {
     int i = 0;
-    for (i = 0; str[i + 1] != 0; i++)
+    size_t len = strlen(str);
+    char* tmp = new char[len * 4 / 3 + 1];
+    char* t = tmp;
+    tmp[0] = '\0';
+    for (i = 0; str[i] != '\0' && str[i + 1] != '\0'; i++)
     {
         if ((str[i] == 'S' && str[i + 1] == 'Q') ||
             (str[i] == 'Q' && str[i + 1] == 'S'))
